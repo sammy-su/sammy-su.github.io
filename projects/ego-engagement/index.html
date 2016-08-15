@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Egocentric Engagement</title>
+
+        <!-- Bootstrap -->
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/custom.css" type="text/css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="container">
+            <nav class="navbar navbar-default navbar-static-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="http://www.cs.utexas.edu/~grauman/research/pubs.html">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                        </a>
+                    </div>
+
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <!--li class="active"><a href="http://www.cs.utexas.edu/~ycsu">Home</a></li-->
+                            <li><a href="#egocentric_engagement">Egocentric Engagement</a></li>
+                            <li><a href="#approach">Approach</a></li>
+                            <li><a href="#result">Result</a></li>
+                            <li><a href="#download">Download</a></li>
+                            <li><a href="interface.html">Annotation Interface</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </nav>
+
+            <div class="row">
+                <div class="row">
+                    <h1><p class="text-center">Detecting Engagement in Egocentric Video</p></h1>
+                </div>
+                <div class="row" style="margin-top:16px">
+                    <p class="text-center" style="font-size:21px">
+                        Yu-Chuan Su and Kristen Grauman <br>
+                        The University of Texas at Austin
+                    </p>
+                </div>
+                <div class="row">
+                    <img src="images/concept.png" class="img-responsive center-block" alt="Concept figure" style="max-width:96%; width:720px;">
+                </div>
+                <p style="font-size:18px; margin-top:18px">
+                    Imagine you are walking through a grocery store.
+                    You may be mindlessly plowing through the aisles grabbing your usual food staples,
+                    when a new product display &mdash; or an interesting fellow shopper &mdash; captures your interest for a few moments.
+                    Similarly, in the museum, as you wander the exhibits, occasionally your attention is heightened and you draw near to examine something more closely.
+                </p>
+                <p style="font-size:18px">
+                    These examples illustrate the notion of engagement in ego-centric activity, where one pauses to inspect something more closely.
+                    Knowing when engagement is heightened would benefit various applications in video summarization and augmented reality,
+                    yet prior work focuses solely on <strong>what</strong> one is looking at (estimating saliency, gaze)
+                    without considering <strong>when</strong> one is engaged with the engironment.
+                    We are the first to introduce the problem of engagement prediction and introduce a large, richly annotated dataset for ego-engagement.
+                    Our results show that engagement can be detected well independent of both scene appearance and the camera wearer's identity.
+                </p>
+                [<a href="#">top</a>]
+            </div>
+
+            <div class="row" id="egocentric_engagement">
+                <h2>Egocentric Engagement</h2>
+                <hr class="single">
+                <h3>Definition</h3>
+                <p style="font-size:18px">
+                We define <strong>heightened ego-engagement in a browsing scenario</strong> as follows. A time interval is considered to have a high engagement level if
+                <u>the recorder is attracted by some object(s), and he interrupts his ongoing flow of activity to purposefully gather more information about the object(s)</u>.
+                </p>
+                <h3>Data collection</h3>
+                <p style="font-size:18px">
+                We ask <strong>9 recorders</strong> to take videos under the following three <strong>browsing</strong> scenarios:
+                </p>
+                <ul style="font-size:18px">
+                    <li>Shopping in the market</li>
+                    <li>Window shopping in shopping mall</li>
+                    <li>Touring in a museum</li>
+                </ul>
+                <p style="font-size:18px">
+                Overall, we collect <strong>27 videos</strong>, each averaging <strong>31 minutes</strong>, for a total dataset of <strong>14 hours</strong>.
+                </p>
+                <p style="font-size:18px">
+                We also collect the annotation for ego-engagement from Amazon Mechanical Turks.
+                We ask <strong>10 Turkers</strong> to annotate each interval and define high engagement intervals as those where a majority marked as positive.
+                See the <a href="interface.html">annotation interface</a> for the instructions for Turkers.
+                Some high engagement intervals are shown as follows.
+                </p>
+
+                <div class="row top-buffer">
+                    <div class="col-md-4">
+                        <div class="embed-responsive embed-responsive-16by9">
+                         <video controls>
+                               <source src="videos/highlight-1.mp4" type="video/mp4">
+                        </video> 
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="embed-responsive embed-responsive-16by9">
+                         <video controls>
+                               <source src="videos/highlight-2.mp4" type="video/mp4">
+                        </video> 
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="embed-responsive embed-responsive-16by9">
+                         <video controls>
+                               <source src="videos/highlight-3.mp4" type="video/mp4">
+                        </video> 
+                        </div>
+                    </div>
+                </div>
+                <div class="row top-buffer">
+                    <div class="col-md-4">
+                        <div class="embed-responsive embed-responsive-16by9">
+                         <video controls>
+                               <source src="videos/highlight-4.mp4" type="video/mp4">
+                        </video> 
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="embed-responsive embed-responsive-16by9">
+                         <video controls>
+                               <source src="videos/highlight-5.mp4" type="video/mp4">
+                        </video> 
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="embed-responsive embed-responsive-16by9">
+                         <video controls>
+                               <source src="videos/highlight-6.mp4" type="video/mp4">
+                        </video> 
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Data analysis</h3>
+                <p style="font-size:18px">
+                We analyze the consistency of annotations (vs. Consensus) in the following table.
+                The results show that annotators have reasonable agreement on the rough interval locations, which verifies the soundness of our definition.
+                We also verify how well the third-party labels match the experience of first-person recorder (vs. Recorder).
+                Overall, the 0.813 F<sub>1</sub> score indicates our lable are fairly faithful to individuals' subjective interpretation.
+                </p>
+                <div class="row">
+                    <img src="images/dataanalysis.png" class="img-responsive center-block" alt="Annotation analysis" style="max-width:96%; width:640px;">
+                </div>
+                [<a href="#">top</a>]
+            </div>
+
+            <div class="row" id="approach">
+                <h2>Approach</h2>
+                <hr class="single">
+                <div class="row">
+                    <img src="images/approach.png" class="img-responsive center-block" alt="Approach flow chart" style="max-width:96%; width:720px;">
+                </div>
+                <h3>(1) Compute frame-wise motion descriptor</h3>
+                <p style="font-size:18px">
+                Divide the frame into 16x12 uniform cells and compute the optical flow in each cell as the descriptor.
+                The grid motion are smoothed temporally with a Gaussian kernel to integrate out the unstable head bobbles.
+                </p>
+                <h3>(2) Estimate frame-wise engagement level</h3>
+                <p style="font-size:18px">
+                Use the frame-level ground trouth to train an i.i.d. classifier for frame-wise engagement.
+                </p>
+                <h3>(3) Generate interval hypothesis</h3>
+                <p style="font-size:18px">
+                Use level set method to generate interval hypothesis from the frame-wise engagement estimation.
+                </p>
+                <h3>(4) Compute interval motion by Temporal Pyramid</h3>
+                <p style="font-size:18px">
+                Aggregate the frame-wise motion descriptors within a hypothesis using temporal pyramid.
+                The temporal pyramid descriptor captures both the motion distribution and evolution over time.
+                </p>
+                <h3>(5) Estimate interval engagement & select candidates</h3>
+                <p style="font-size:18px">
+                Use the interval-level ground trouth and descriptor to learn a engagement classifier.
+                At test time, if a frame is covered by multiple proposals, the highest confidence score is taken as the final prediction per frame.
+                </p>
+                [<a href="#">top</a>]
+            </div>
+
+            <div class="row" id="result">
+                <h2>Result</h2>
+                <hr class="single">
+
+                <h3>Quantitative</h3>
+                <ul style="font-size:18px">
+                    <li><strong>Cross-Recorder</strong>: Train a predictor for each recorder using exclusively video from other recorders.</li>
+                    <li><strong>Cross-Scenario</strong>: Train a predictor for each scenario using exclusively video from other scenarios.</li>
+                    <li><strong>Cross Recorder AND Scenario</strong>: Disallow any overlap in either the recorder or the scenario in train-test data split.</li>
+                </ul>
+                <div class="row">
+                    <img src="images/ee_result.png" class="img-responsive center-block" alt="Results on UT-EE" style="width:96%;">
+                </div>
+                <div class="row" style="margin-top:16px">
+                    <img src="images/results.png" class="img-responsive center-block" alt="Results on UT-EE" style="width:96%; max-width:640px">
+                </div>
+
+                <h3>Qualitative</h3>
+                <p style="font-size:18px">
+                    We show the predicted intervals of the following methods:
+                </p>
+                <ol style="font-size:18px">
+                    <font color="blue"><li><strong>Ground truth</strong></li></font>
+                    <font color="red"><li><strong>Ours - interval</strong></li></font>
+                    <font color="purple"><li><strong>CNN Appearance</strong></li></font>
+                    <font color="green"><li><strong>Motion Magnitude (Rallapalli 2014)</strong></li></font>
+                    <font color="magenta"><li><strong>Video Saliency (Rudoy 2013)</strong></li></font>
+                </ol>
+                <p style="font-size:18px">
+                    Methods 1 and 2 are trained using cross-recorder strategy.
+                    The video clips are from the UT Egocentric Engagement dataset we collected.
+                </p>
+                <div class="row" style="margin-top:21px">
+                    <div class="col-md-6">
+                        <div class="embed-responsive embed-responsive-4by3">
+                         <video controls>
+                               <source src="videos/example_1.mp4" type="video/mp4">
+                        </video> 
+                        </div>
+                        <p style="font-size:18px; margin-top:12px">
+                            The recorder walks to the refrigerator and grabs the cabbage.
+                            The recorder continuously moves around during the interval, and motion magnitude baseline fails.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="embed-responsive embed-responsive-4by3">
+                         <video controls>
+                               <source src="videos/example_2-1.mp4" type="video/mp4">
+                        </video> 
+                        </div>
+                        <p style="font-size:18px; margin-top:12px">
+                            The recorder searches for items on the shelf and looks up and down.
+                            Appearance baseline fails when he looks at objects from non-common views.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:21px">
+                    <div class="col-md-6">
+                        <div class="embed-responsive embed-responsive-4by3">
+                         <video controls>
+                               <source src="videos/example_2-2.mp4" type="video/mp4">
+                        </video> 
+                        </div>
+                        <p style="font-size:18px; margin-top:16px">
+                            The recorder searches for itmes on the shelf.
+                            Appearance baseline fails when the recorder looks up.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="embed-responsive embed-responsive-4by3">
+                         <video controls>
+                               <source src="videos/example_2-3.mp4" type="video/mp4">
+                        </video> 
+                        </div>
+                        <p style="font-size:18px; margin-top:16px">
+                            The recorder looks at the corner of the paining from a large angle.
+                            Appearance baseline fails because the recorder looks at the object from non-common views.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:21px">
+                    <div class="col-md-6">
+                        <div class="embed-responsive embed-responsive-4by3">
+                         <video controls>
+                               <source src="videos/example_3-1.mp4" type="video/mp4">
+                        </video> 
+                        </div>
+                        <p style="font-size:18px; margin-top:16px">
+                            The recorder looks up at the sign.
+                            Appearance baseline fails when the recorder looks at objects that rarely appear in the dataset.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="embed-responsive embed-responsive-4by3">
+                         <video controls>
+                               <source src="videos/example_3-2.mp4" type="video/mp4">
+                        </video> 
+                        </div>
+                        <p style="font-size:18px; margin-top:16px">
+                            The recorder walks around and looks at the statue from different views.
+                            Appearance baseline fails because the statue appear only once in the dataset.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:21px">
+                    <div class="col-md-6">
+                        <div class="embed-responsive embed-responsive-4by3">
+                         <video controls>
+                               <source src="videos/example_4-1.mp4" type="video/mp4">
+                        </video> 
+                        </div>
+                        <p style="font-size:18px; margin-top:16px">
+                            The recorder looks at a series of exhibitions.
+                            He performs multiple actions and looks at multiple items in the interval.
+                            Baseline methods fail to generate stable and continuous prediction.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="embed-responsive embed-responsive-4by3">
+                         <video controls>
+                               <source src="videos/example_4-2.mp4" type="video/mp4">
+                        </video> 
+                        </div>
+                        <p style="font-size:18px; margin-top:16px">
+                            The recorder walks around the shelf and inspect the goods.
+                            Baseline methods fail to generate stable and continuous prediction.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:21px">
+                    <div class="col-md-6">
+                        <div class="embed-responsive embed-responsive-4by3">
+                         <video controls>
+                               <source src="videos/example_5-1.mp4" type="video/mp4">
+                        </video> 
+                        </div>
+                        <p style="font-size:18px; margin-top:16px">
+                            The recorder is walking in the aisle of the shopping mall and looks around.
+                            He performs actions similar to those he performs when engaged on objects.
+                            These actions trigger false positive of our motion-based method.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="embed-responsive embed-responsive-4by3">
+                         <video controls>
+                               <source src="videos/example_5-2.mp4" type="video/mp4">
+                        </video> 
+                        </div>
+                        <p style="font-size:18px; margin-top:16px">
+                            The object that attracts the recorder is on his walking direction.
+                            The recorder doesn't perform any action in response, so our motion-based method fails.
+                        </p>
+                    </div>
+                </div>
+                [<a href="#">top</a>]
+            </div>
+
+            <div class="row" id="download">
+                <h2>Download</h2>
+                <hr class="single">
+                <ul style="font-size:18px">
+                    <li><a href="eccv2016-0881su.pdf">Paper</a></li>
+                    <li><a href="eccv2016-0881su-supp.pdf">Supplementary material</a></li>
+                </ul>
+            </div>
+        </div> <!-- /container -->
+
+        <footer>
+        </footer>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="../../js/bootstrap.min.js"></script>
+    </body>
+</html>

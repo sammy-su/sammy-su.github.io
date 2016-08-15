@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Yu-Chuan Su</title>
+
+        <!-- Bootstrap -->
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/custom.css" type="text/css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="container">
+            <nav class="navbar navbar-default navbar-static-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="http://www.cs.utexas.edu/~grauman/research/pubs.html">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                        </a>
+                    </div>
+
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="index.html#egocentric_engagement">Egocentric Engagement</a></li>
+                            <li><a href="index.html#approach">Approach</a></li>
+                            <li><a href="index.html#result">Result</a></li>
+                            <li><a href="index.html#download">Download</a></li>
+                            <li><a href="interface.html">Annotation Interface</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="row">
+                <h1>Task Description</h1>
+                <p style="font-size:18px">
+                    George is wearing a camera on his head.
+                    The camera captures video constantly as George goes about his daily life.
+                    Because the camera is on his head, when George moves his head to look around, the camera moves too. 
+                    Basically, it captures the world just as George sees it.
+                </p>
+                <p style="font-size:18px">
+                    Your job is to watch a video excerpt from George's camera that lasts 1-2 minutes,
+                    and determine when <strong>something in the environment has captured George's attention</strong>.
+                    You will first watch the entire video.
+                    Then you will go back and use a slider to navigate through the video frames and mark the intervals (start and end points) where he is paying close attention to something.
+                    <strong>Note, the video may have more than one interval where George is paying close attention to something</strong>.
+                </p>
+
+                <h2>Definition of Attention</h2>
+                <p style="font-size:18px">
+                    The following instructions will describe what we mean by "capturing George's attention" in more detail:
+                </p>
+                <p style="font-size:18px">
+                    Humans' cognitive process has different levels of attention to the surrounding environment.
+                    For example, people pay very little attention to their surroundings when they are walking on a route they are familiar with,
+                    but the attention level will rise significantly if there are unusual events (such as a car accident) or something attracts their curiosity (such as a new advertisement on the wall),
+                    or if they want to inspect something more closely (such as a product on the shelf when shopping).
+                    You are asked to identify these "high attention intervals" in the video.
+                </p>
+
+                <p style="font-size:18px">
+                    <strong>In particular, we ask you to identify intervals where George's attention is focussed on an object or a specific location in the scene.</strong>
+                    During these intervals, George is attracted by an object and tries to have a better view/understanding about it intentionally.
+                    In general, George may:
+                </p>
+                <p>
+                    <ol type="i" style="font-size:18px">
+                        <li>Have a closer look at the object,</li>
+                        <li>Inspect the object from different views,</li>
+                        <li>Stare at the object,</li>
+                    </ol>
+                </p>
+                <p style="font-size:18px">
+                    In some situations, George may even interact physically with the object capturing his attention to gather more information.
+                    For example, he may grab the object to have a closer view of it, or he may turn the object to inspect it from different views. 
+                    To identify these situations, we also ask you to annotate <strong>whether George touched the object</strong> capturing his attention during the interval.
+                </p>
+
+                <p style="font-size:18px">
+                    The following video shows examples of attention interval
+                </p>
+                <div class="center-block" style="width:640px; max-width:96%">
+                    <div class="embed-responsive embed-responsive-4by3">
+                         <video controls>
+                               <source src="videos/attention_example.mp4" type="video/mp4">
+                        </video> 
+                    </div>
+                </div>
+
+                <h2>Important Notes</h2>
+                <ul style="font-size:18px">
+                    <li>
+                    You should watch the entire video (1-2 minutes) first before doing any annotation.
+                    This will give you the context of the activity to know when George is paying close attention.
+                    </li>
+
+                    <li>
+                    A video may contain <strong>multiple or no</strong> intervals where George's attention is captured.
+                    You should label each one separately.
+                    The intervals are mutually exclusive and should not overlap.
+                    </li>
+
+                    <li>
+                    Each interval where George's attention is captured may vary in length.
+                    Some could be a couple seconds long, others could be closer to a minute long.
+                    The minimum length of each interval is 15 frames (1 second).
+                    </li>
+
+                    <li>
+                    You may need to scroll back and forth in the video using our slider interface to determine exactly when the attention starts and stops.
+                    Mark the interval as tightly as possible.
+                    </li>
+
+                    <li>
+                    After labeling where an attention interval starts and ends, you will mark whether George has physical contact (grab, touch, etc.) with the object during the interval or is just looking at it.
+                    </li>
+
+                    <li>
+                    You will also mark your confidence in terms of how strongly George's attention was captured in that interval (Obvious, Fairly clear, Subtle).
+                    </li>
+                </ul>
+
+                <h1>Interface Introduction</h1>
+                <p style="font-size:18px">
+                    The following introduction will give you tips on how to best use the tool.
+                    Please watch the below video (and/or read the below section) for instructions:
+                </p>
+                <div class="center-block" style="width:640px; max-width:96%">
+                    <div class="embed-responsive embed-responsive-4by3">
+                         <video controls>
+                               <source src="videos/instruction.mp4" type="video/mp4">
+                        </video> 
+                    </div>
+                </div>
+
+                <h2>Getting Started</h2>
+                <p style="font-size:18px">
+                    Press the <strong>Play</strong> button to play the video.
+                </p>
+                <div class="row">
+                    <img src="images/rewind.png" class="img-responsive center-block" style="max-width:96%; width:480px; border: 2px solid black">
+                </div>
+                <p style="font-size:18px">
+                    After the video finished, press the <strong>Rewind</strong> button and start annotation.
+                </p>
+                <p style="font-size:18px">
+                    Play the video, <strong>Pause</strong> the video when you reach the frame at the beginning of high attention interval.
+                </p>
+                <p style="font-size:18px">
+                    Click the <strong>Start</strong> button to mark the 'Start' of the interval.
+                </p>
+                <p style="font-size:18px">
+                    On the right, directly below the Start button, you will find a colorful box showing the frame number corresponding to the 'Start' of the interval.
+                </p>
+
+                <div class="row">
+                    <img src="images/intervalstart.png" class="img-responsive center-block" style="max-width:96%; width:320px; border: 2px solid black">
+                </div>
+
+                <p style="font-size:18px">
+                    Press the <strong>Play</strong> button. The video will begin to play forward.
+                </p>
+                <p style="font-size:18px">
+                    Similarly, click the <strong>End</strong> button to mark the 'End' of the interval.
+                </p>
+                <p style="font-size:18px">
+                    After you mark the end of the interval, you will be asked whether George contact (grabbing, touching, etc.) the object that captures his attention.
+                </p>
+
+                <div class="row">
+                    <img src="images/attentioninteraction.png" class="img-responsive center-block" style="max-width:96%; width:320px; border: 2px solid black">
+                </div>
+
+                <p style="font-size:18px">
+                    Next, you will be asked about how obvious is the attention interval.
+                    Specify whether the interval is <strong>Obvious</strong>, <strong>Fairly clear</strong>, <strong>Subtle</strong>.
+                </p>
+
+                <div class="row">
+                    <img src="images/attentionlevel.png" class="img-responsive center-block" style="max-width:96%; width:320px; border: 2px solid black">
+                </div>
+
+                <p style="font-size:18px">
+                    Finally, you will be asked to describe what attracts George's attention.
+                    Type in what attracts George's attention (object, scene, event, etc.) and <strong>Submit</strong> the interval.
+                </p>
+
+                <div class="row">
+                    <img src="images/attentiondescription.png" class="img-responsive center-block" style="max-width:96%; width:320px; border: 2px solid black">
+                </div>
+                <p style="font-size:18px">
+                    When you are ready to submit your work, rewind the video and watch it through one more time.
+                    Do the 'Start' and 'End' you specified cover the complete high attention interval?
+                    After you have checked your work, press the <strong>Submit HIT</strong> button. We will pay you as soon as possible.
+                </p>
+                <p style="font-size:18px">
+                    Do <strong>not</strong> reload or close the page before redirected to next hit.
+                    This may cause submission failure.
+                </p>
+
+                <h2>How We Accept Your Work</h2>
+                <p style="font-size:18px">
+                    We will hand review your work and we will only accept high quality work.
+                    Your annotations are not compared against other workers.
+                </p>
+
+                <h2>Keyboard Shortcuts</h2>
+                <p style="font-size:18px">
+                    These keyboard shortcuts are available for your convenience:
+                </p>
+                <ul class="keyboardshortcuts" style="font-size:18px">
+                    <li><code>t</code> toggles play/pause on the video</li>
+                    <li><code>r</code> rewinds the video to the start</li>
+                    <li><code>d</code> jump the video forward a bit</li>
+                    <li><code>f</code> jump the video backward a bit</li>
+                    <li><code>v</code> step the video forward a tiny bit</li>
+                    <li><code>c</code> step the video backward a tiny bit</li>
+                </ul>
+
+            </div>
+
+
+        </div> <!-- /container -->
+
+        <footer>
+        </footer>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="../../js/bootstrap.min.js"></script>
+    </body>
+</html>
