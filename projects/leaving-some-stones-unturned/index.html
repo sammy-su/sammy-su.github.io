@@ -95,7 +95,7 @@
                 <ul style="font-size:18px">
                     <li>
                     <strong>State s<sub>k</sub></strong> <br>
-                    captures the current environment at the k-th step of the recognition episode, defined in terms of the history of extracted features and prior actions.
+                    captures the video content observed so far at the k-th step of the recognition episode. It is defined in terms of the history of extracted features and prior actions.
                     </li>
                     <li>
                     <strong>Action A={a<sub>m</sub>}</strong> <br>
@@ -119,25 +119,46 @@
                 <h2>Experiment Results</h2>
                 <hr class="single">
 
-                <p style="font-size:18px; margin-top:18px"> &bull; Streaming setting &mdash; Bag-of-Object</p>
-                <div class="row">
-                    <img src="figures/streaming.png" class="img-responsive center-block" alt="Bag-of-Object Streaming" style="max-width:96%; width:960px">
-                </div>
+                <p style="font-size:18px">
+                We show the quantitative results under streaming and untrimmed detection setting with different video representations.
+                We show the policies learned by the algorithm.
+                Please refer to the paper for experiment details and more results.
+                </p>
 
-                <p style="font-size:18px; margin-top:18px"> &bull; Streaming setting &mdash; CNN & IDT</p>
-                <div class="row">
-                    <img src="figures/cnn_streaming.png" class="img-responsive center-block" alt="CNN Streaming" style="max-width:96%; width:960px">
-                </div>
+                <ul style="font-size:18px; margin-top:12px">
+                    <li> Streaming + Bag-of-Object<br>
+                    <div class="row">
+                        <img src="figures/streaming.png" class="img-responsive center-block" alt="Bag-of-Object Streaming" style="max-width:96%; width:960px">
+                    </div>
+                    <p style="margin-top:12px">
+                    Our method performs better under most object detector speed. See the left 2 figures.<br>
+                    The advantage is most significant under low detector speed, or equivalently, low resource budget.<br>
+                    </p>
 
-                <p style="font-size:18px; margin-top:18px"> &bull; Untrimmed setting &mdash; Bag-of-Object</p>
-                <div class="row">
-                    <img src="figures/untrimmed_fourcol.png" class="img-responsive center-block" alt="Untrimmed" style="max-width:96%; width:960px">
-                </div>
+                    <li style="margin-top:18px"> Streaming + CNN & IDT (UCF-101)<br>
+                    <div class="row" style="margin-top:12px">
+                        <img src="figures/cnn_streaming.png" class="img-responsive center-block" alt="CNN Streaming" style="max-width:96%; width:960px">
+                    </div>
+                    <p style="margin-top:12px">
+                    Our method intelligently skips uninformative frames as the feature extraction speed increase. See the 1st figure.<br>
+                    It reaches the ultimate performance by processing less than 40% of the frames. See figure 2&ndash;4.
+                    </p>
 
-                <p style="font-size:18px; margin-top:18px"> &bull; Learned policy</p>
-                <div class="row">
-                    <img src="figures/policy.png" class="img-responsive center-block" alt="Learned policy" style="max-width:92%; width:640px">
-                </div>
+                    <li style="margin-top:18px"> Untrimmed + Bag-of-Object<br>
+                    <div class="row">
+                        <img src="figures/untrimmed_fourcol.png" class="img-responsive center-block" alt="Untrimmed" style="max-width:96%; width:960px">
+                    </div>
+                    <p style="margin-top:12px">
+                    Our method can achieve better accuracy (left-top) as well as reduce the computation cost (bot) under all object detector speed.<br>
+                    Also, our method performs well on "early" detection, (measured by the AMOC curve, right-top). Please see the paper for explanation.
+                    </p>
+
+                    <li style="margin-top:18px"> Learned policy<br>
+                    <div class="row">
+                        <img src="figures/policy.png" class="img-responsive center-block" alt="Learned policy" style="max-width:92%; width:640px">
+                    </div>
+                </ul>
+
                 [<a href="#">top</a>]
             </div>
 
@@ -145,20 +166,24 @@
                 <h2>Example Recognition Episodes</h2>
                 <hr class="single">
 
+                <p style="font-size:18px">
+                We visualize the recognition episodes under streaming setting. These videos show how the policy operates in test time.
+                </p>
+
                 <p style="font-size:18px; margin-top:18px; margin-bottom:-4px"> &bull; ADL &mdash; Bag-of-Object</p>
                 <div class="row">
                     <div class="col-md-6" style="margin-top:8px">
                         <div class="embed-responsive embed-responsive-16by9 center-block" style="border:1px solid black; max-width:98%">
                              <video controls>
-                                   <source src="videos/example1.mp4" type="video/mp4">
-                            </video> 
+                                 <source src="videos/example1.mp4" type="video/mp4">
+                            </video>
                         </div>
                     </div>
                     <div class="col-md-6" style="margin-top:8px">
                         <div class="embed-responsive embed-responsive-16by9 center-block" style="border:1px solid black; max-width:98%">
                              <video controls>
                                    <source src="videos/example2.mp4" type="video/mp4">
-                            </video> 
+                            </video>
                         </div>
                     </div>
                 </div>
@@ -169,14 +194,14 @@
                         <div class="embed-responsive embed-responsive-16by9 center-block" style="border:1px solid black; max-width:98%">
                              <video controls>
                                    <source src="videos/example3.mp4" type="video/mp4">
-                            </video> 
+                            </video>
                         </div>
                     </div>
                     <div class="col-md-6" style="margin-top:8px">
                         <div class="embed-responsive embed-responsive-16by9 center-block" style="border:1px solid black; max-width:98%">
                              <video controls>
                                    <source src="videos/example4.mp4" type="video/mp4">
-                            </video> 
+                            </video>
                         </div>
                     </div>
                 </div>
@@ -187,14 +212,14 @@
                         <div class="embed-responsive embed-responsive-16by9 center-block" style="border:1px solid black; max-width:98%">
                              <video controls>
                                    <source src="videos/example5.mp4" type="video/mp4">
-                            </video> 
+                            </video>
                         </div>
                     </div>
                     <div class="col-md-6" style="margin-top:8px">
                         <div class="embed-responsive embed-responsive-16by9 center-block" style="border:1px solid black; max-width:98%">
                              <video controls>
                                    <source src="videos/example6.mp4" type="video/mp4">
-                            </video> 
+                            </video>
                         </div>
                     </div>
                 </div>
@@ -203,14 +228,14 @@
                         <div class="embed-responsive embed-responsive-16by9 center-block" style="border:1px solid black; max-width:98%">
                              <video controls>
                                    <source src="videos/example7.mp4" type="video/mp4">
-                            </video> 
+                            </video>
                         </div>
                     </div>
                     <div class="col-md-6" style="margin-top:8px">
                         <div class="embed-responsive embed-responsive-16by9 center-block" style="border:1px solid black; max-width:98%">
                              <video controls>
                                    <source src="videos/example8.mp4" type="video/mp4">
-                            </video> 
+                            </video>
                         </div>
                     </div>
                 </div>
@@ -221,11 +246,12 @@
                 <hr class="single">
                 <ul style="font-size:18px">
                     <li>
-                    Yu-Chuan Su and Kristen Grauman, 
+                    Yu-Chuan Su and Kristen Grauman,
                     "Leaving Some Stones Unturned: Dynamic Feature Prioritization for Activity Detection in Streaming Video,"
                     ECCV 2016<br>
                     [<a href="eccv2016-1542su.pdf">pdf</a>]
                     [<a href="eccv2016-1542su-supp.pdf">supp</a>]
+                    [<a href="dynamic_feature_prioritization_poster.pdf">poster</a>]
                     [<a href="eccv2016-1542su.bib">bibtex</a>]
                     </li>
                 </ul>
