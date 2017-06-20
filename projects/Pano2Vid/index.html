@@ -52,13 +52,13 @@
 
             <div class="row">
                 <div class="row">
-                    <h1><p class="text-center">Pano2Vid: Automatic Cinematography for Watching 360◦ Videos</p></h1>
+                    <h1><p class="text-center">Pano2Vid: Automatic Cinematography for Watching 360° Videos</p></h1>
                 </div>
                 <div class="row">
                     <img src="figures/concept.png" class="img-responsive center-block" alt="Concept figure" style="max-width:96%; width:720px;">
                 </div>
                 <p style="font-size:18px; margin-top:18px">
-                A 360◦ camera captures the entire visual world from its optical center,
+                A 360° camera captures the entire visual world from its optical center,
                 which provides exciting new ways to record and experience visual content by relieving restrictions on the field-of-view (FOV).
                 Videographers no longer have to determine what to capture in the scene,
                 and human viewers can freely explore the visual content.
@@ -69,7 +69,7 @@
                 </p>
                 <p style="font-size:18px; margin-top:18px">
                 To address this difficulty, we define “Pano2Vid”, a new computer vision problem.
-                The task is to design an algorithm that automatically controls the pose and motion of a virtual normal-field-of-view (NFOV) camera within an input 360◦ video.
+                The task is to design an algorithm that automatically controls the pose and motion of a virtual normal-field-of-view (NFOV) camera within an input 360° video.
                 Camera control must be optimized to produce video that could conceivably have been captured by a human observer equipped with a real NFOV camera.
                 A successful Pano2Vid solution would therefore take the burden of choosing “where to look” off both the videographer and the end viewer:
                 the videographer could enjoy the moment without consciously directing her camera,
@@ -91,10 +91,10 @@
                     </div>
                 </div>
                 <p style="font-size:18px; margin-top:18px">
-                    When watching 360◦ videos, the human viewer needs to actively control the viewing direction.
+                    When watching 360° videos, the human viewer needs to actively control the viewing direction.
                     This is not a trivial task, because the viewer has no information beyond the current field of view.
                     For example, in the above video, the viewer fails to notice that there is an elephant approaching the camera from the opposite direction at the beginning.
-                    Therefore, the key challenge for watching 360◦ video is how to find the right direction to watch.
+                    Therefore, the key challenge for watching 360° video is how to find the right direction to watch.
                 </p>
                 [<a href="#">top</a>]
             </div>
@@ -112,10 +112,10 @@
                     </div>
                 </div>
                 <p style="font-size:18px; margin-top:18px">
-                    To overcome the challenge of viewing 360◦ video, we propose a new computer vision problem that helps people determine where and what to look at in 360◦ video.
+                    To overcome the challenge of viewing 360° video, we propose a new computer vision problem that helps people determine where and what to look at in 360° video.
                 </p>
                 <ul style="font-size:18px; margin-top:18px">
-                    <li>Input: 360◦ video</li>
+                    <li>Input: 360° video</li>
                     <li>Output: normal-field-of-view video</li>
                     <li>Task: controls the virtual camera direction (in 2D spherical direction)</li>
                     <li>Goal: generate videos look as if captured by human videographer in the scene</li>
@@ -131,8 +131,8 @@
                     <img src="figures/st_glimpse.png" class="img-responsive center-block" alt="Spatio-temporal Glimpse" style="max-width:96%; width:720px;">
                 </div>
                 <p style="font-size:18px; margin-top:18px">
-                    A spatio-temporal glimpse is a short normal-field-of-view video extracted from 360◦ video with fixed viewing direction.
-                    It transforms 360◦ content into normal video and makes the visual feature comparable.
+                    A spatio-temporal glimpse is a short normal-field-of-view video extracted from 360° video with fixed viewing direction.
+                    It transforms 360° content into normal video and makes the visual feature comparable.
                 </p>
                 <h3>Capture-worthiness</h3>
                 <div class="row">
@@ -146,7 +146,7 @@
                     <img src="figures/sample_glimpses.png" class="img-responsive center-block" alt="Sample ST-glimpses" style="max-width:96%; width:720px;">
                 </div>
                 <p style="font-size:18px; margin-top:18px">
-                    Given a 360◦ video, we densely sample spatio-temporal glimpses both spatially and temporally.
+                    Given a 360° video, we densely sample spatio-temporal glimpses both spatially and temporally.
                     We sample 198 glimpses at 18 azimutal angles and 11 polar angles every 5 seconds.
                     We then estimate the capture-worthiness score for all the glimpses.
                 </p>
@@ -168,7 +168,7 @@
                 <hr class="single">
                 <h3>Dataset</h3>
                 <p style="font-size:18px; margin-top:18px">
-                    We collect the 360◦ and HumanCam videos from YouTube using following keywords: <em>"Hiking", "Mountain Climbing", "Parade", "Soccer"</em>.
+                    We collect the 360° and HumanCam videos from YouTube using following keywords: <em>"Hiking", "Mountain Climbing", "Parade", "Soccer"</em>.
                 </p>
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
@@ -182,7 +182,7 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>360◦ Videos</td>
+                                <td>360° Videos</td>
                                 <td>86</td>
                                 <td>7.3 hours</td>
                             </tr>
@@ -207,7 +207,7 @@
                         <img src="figures/saliency_baseline.png" class="img-responsive center-block" alt="Saliency" style="width:240px; max-width=72%">
                     </div--!>
                     <ul style="font-size:18px">
-                        <li>Center prior &ndash; random trajectories biased toward center in 360◦ camera axis</li>
+                        <li>Center prior &ndash; random trajectories biased toward center in 360° camera axis</li>
                         <li>Eye-level prior &ndash; static trajectories lying on the equator</li>
                         <li>Saliency &ndash; replace capture-worthiness score with saliency score in AutoCam</li>
                     </ul>
@@ -229,10 +229,10 @@
                                 <img src="figures/humancamlikeness.png" class="img-responsive center-block" alt="HumanCam-Likeness:" style="max-width=98%">
                             </div>
                         </div>
-                        <li>HumanEdit-based Metrics &ndash; whether the algorithm controls the viewing direction similar to human viewers in the same 360◦ video</li>
+                        <li>HumanEdit-based Metrics &ndash; whether the algorithm controls the viewing direction similar to human viewers in the same 360° video</li>
                         <ul style="font-size:18px">
-                            <li>Cosine &ndash; cosine similarity between the viewing directions of human viewer and algorithm output in the same 360◦ video</li>
-                            <li>Overlap &ndash; field-of-view overlap of human viewer and algorithm output in the same 360◦ video</li>
+                            <li>Cosine &ndash; cosine similarity between the viewing directions of human viewer and algorithm output in the same 360° video</li>
+                            <li>Overlap &ndash; field-of-view overlap of human viewer and algorithm output in the same 360° video</li>
                         </ul>
                     </ul>
                 </div>
@@ -320,7 +320,7 @@
                         </p>
                             <ul style="font-size:18px">
                                 <li>
-                                Center &ndash; Videographers often hold the 360◦ camera in an orientation such that the center corresponds to some special directions,
+                                Center &ndash; Videographers often hold the 360° camera in an orientation such that the center corresponds to some special directions,
                                 e.g. the direction pointing to the videographer.
                                 </li>
                                 <li>
@@ -373,10 +373,10 @@
                             Design highlights:
                         </p>
                         <ul style="font-size:18px">
-                            <li>Display 360◦ video in equirectangular projection, so the editor can see all content at once</li>
-                            <li>Expand the panoramic strip by 90◦ on both side to avoid discontinuous content</li>
+                            <li>Display 360° video in equirectangular projection, so the editor can see all content at once</li>
+                            <li>Expand the panoramic strip by 90° on both side to avoid discontinuous content</li>
                             <li>Human editor controls the virtual camera direction by the mouse location</li>
-                            <li>Backproject the camera field-of-view to the 360◦ video</li>
+                            <li>Backproject the camera field-of-view to the 360° video</li>
                         </ul>
                     </div>
                 </div>
@@ -396,7 +396,7 @@
                     [<a href="http://vision.cs.utexas.edu/projects/Pano2Vid/pano2vid_accv16.pptx">slide</a>]
                     [<a href="accv2016-0327su-poster.pdf">poster</a>]
                     [<a href="accv2016-0327su.bib">bib</a>]
-                    [<a href="panoramic_videos.json">360◦ Videos</a>/<a href="humanCam.json">HumanCam</a>]
+                    [<a href="panoramic_videos.json">360° Videos</a>/<a href="humanCam.json">HumanCam</a>]
                     [<a href="human_edit.json">HumanEdit</a>]
                     [<a href="http://vision.cs.utexas.edu/projects/Pano2Vid/humancam-c3d.pkl">HumanCam C3D (fc6)</a>]
                     [<a href="https://github.com/sammy-su/Pano2Vid">Code</a>]
