@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Spherical Convolution</title>
+
+        <!-- Bootstrap -->
+        <link href="http://sammy-su.github.io/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://sammy-su.github.io/css/custom.css" type="text/css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="container">
+            <nav class="navbar navbar-default navbar-static-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="http://sammy-su.github.io">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                        </a>
+                    </div>
+
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#preliminary">Preliminary</a></li>
+                            <li><a href="#sphconv">SphConv</a></li>
+                            <li><a href="#results">Results</a></li>
+                            <li><a href="#publication">Publication</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </nav>
+
+            <div class="row">
+                <div class="row">
+                    <h1>
+                        <p class="text-center">Learning Spherical Convolution for Fast Features from 360° Imagery</p>
+                    </h1>
+                </div>
+                <div class="row">
+                    <img src="figures/sphconv.png" class="img-responsive center-block" alt="Concept figure" style="max-width:92%; width:640px;">
+                </div>
+                <p style="font-size:18px; margin-top:18px">
+                    We propose a generic approach that can transfer Convolutional Nerual Networks that has been trained on perspective images to 360° images.
+                    Our solution entails a new form of distillation across camera projection models.  
+                    Compared to current practices for feature extraction on 360° images, 
+                    spherical convolution benefits efficiency by avoiding performing multiple perspective projections,
+                    and it benefits accuracy by adapting kernels to the distortions in equirectangular projection.
+                </p>
+                [<a href="#">top</a>]
+            </div>
+
+            <div class="row" id="preliminary">
+                <h2>Preliminary</h2>
+                <hr class="single">
+                <p style="font-size:18px; margin-top:18px">
+                    Existing strategies for applying off-the-shelf CNNs on 360° images are problematic.
+                </p>
+                <h3>Strategy I</h3>
+                <div class="row">
+                    <img src="figures/strategy_I.png" class="img-responsive center-block" alt="Strategy I" style="max-width:92%; width:720px;">
+                </div>
+                <ul style="font-size:18px">
+                    <li>Accuracy: inaccurate in regions where the visual content is distorted</li>
+                    <li>Efficiency: computationally efficient, because the only overhead is the sphere-to-plane projection</li>
+                </ul>
+                <h3>Strategy II</h3>
+                <div class="row">
+                    <img src="figures/strategy_II.png" class="img-responsive center-block" alt="Strategy II" style="max-width:92%; width:720px;">
+                </div>
+                <ul style="font-size:18px">
+                    <li>Accuracy: as accurate as the source model, because there's no distortion</li>
+                    <li>Efficiency: high computational cost, because it requires repeated projection and model evaluation</li>
+                </ul>
+                <h3>Spherical CNN</h3>
+                <p style="font-size:18px; margin-top:18px">
+                    Many works try to learn new CNNs on spherical data.
+                    However, they require annotated training data in spherical format and cannot exploit existing datasets and models even for the very same task.
+                </p>
+                [<a href="#">top</a>]
+            </div>
+
+            <div class="row" id="sphconv">
+                <h2>Spherical Convolution</h2>
+                <hr class="single">
+                <h3>Objective</h3>
+                <p style="font-size:18px; margin-top:18px">
+                    We learn the spherical convolutional network to reproduce the exact outputs of the source model on the perspective projected images while taking the equirectangular projection as input.
+                </p>
+                <div class="row">
+                    <img src="figures/sphconv_objective.png" class="img-responsive center-block" alt="Objective" style="max-width:92%; width:960px;">
+                </div>
+                <ul style="font-size:18px">
+                    <li>Accuracy: spherical convolutional network is accurate, because it reproduces the outputs of the source model on the undistorted (i.e. perspective projected) visual content</li>
+                    <li>Efficiency: spherical convolutional network is efficient, because it convolves over a single equirectangular projection</li>
+                </ul>
+                <h3>Network Architecture</h3>
+                <p style="font-size:18px; margin-top:18px">
+                    Because the distortion in equirectangular projection is location detendent, we untie the kernel weights along the rows.
+                    The kernels learn to account for the different distortions they encountered.
+                </p>
+                <div class="row">
+                    <img src="figures/distortion.png" class="img-responsive center-block" alt="Equirectangular distortion" style="max-width:92%; width:960px;">
+                </div>
+                <h3>Layer-wise Training</h3>
+                <p style="font-size:18px; margin-top:18px">
+                    We propose a layer-wise training procedure to accelerate learning.
+                    By requiring the spherical convolutional network to reproduce all intermediate outputs of the source model,
+                    each layer of the network becomes independent and can be trained separately.
+                </p>
+                <div class="row">
+                    <img src="figures/layerwise.png" class="img-responsive center-block" alt="Layer-wise training" style="max-width:92%; width:480px;">
+                </div>
+                [<a href="#">top</a>]
+            </div>
+
+            <div class="row" id="results">
+                <h2>Results</h2>
+                <hr class="single">
+                <p style="font-size:18px; margin-top:18px">
+                    To evaluate the method, we apply SphConv to off-the-shelf <a href="https://github.com/rbgirshick/py-faster-rcnn">Faster R-CNN</a>.
+                    We train the model on the <a href="http://sammy-su.github.io/projects/Pano2Vid">Pano2Vid</a> 360° video dataset and evaluate on the Pano2Vid and spherical Pascal VOC 2007 datasets.
+                </p>
+                <div class="row">
+                    <img src="figures/sphconv_evaluation.png" class="img-responsive center-block" alt="Results" style="max-width:92%; width:640px;">
+                </div>
+                <ul style="font-size:18px">
+                    <li>Accuracy: SphConv is 50% more accurate than Strategy I</li>
+                    <li>Efficiency: SphConv is orders of magnitude faster than Strategy II</li>
+                </ul>
+                <h3>Example Outputs</h3>
+                <div class="row">
+                    <div class="col-md-6" style="margin-top:8px">
+                        <img src="figures/005976-bbox002.jpg" class="img-responsive center-block" alt="005976" style="max-width:98%">
+                    </div>
+                    <div class="col-md-6" style="margin-top:8px">
+                        <img src="figures/006500-bbox003.jpg" class="img-responsive center-block" alt="006500" style="max-width:98%">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" style="margin-top:8px">
+                        <img src="figures/008428-bbox000.jpg" class="img-responsive center-block" alt="008428" style="max-width:98%">
+                    </div>
+                    <div class="col-md-6" style="margin-top:8px">
+                        <img src="figures/009258-bbox000.jpg" class="img-responsive center-block" alt="009258" style="max-width:98%">
+                    </div>
+                </div>
+                [<a href="#">top</a>]
+            </div>
+
+            <div class="row" id="publication">
+                <h2>Publication</h2>
+                <hr class="single">
+                <ul style="font-size:18px">
+                    <li>
+                    Yu-Chuan Su, Kristen Grauman,
+                    "Learning Spherical Convolution for Fast Features from 360° Imagery,"
+                    NeurIPS 2017<br>
+                    [<a href="https://arxiv.org/abs/1708.00919">arXiv</a>]
+                    [<a href="https://www.dropbox.com/s/2f8k89ykuq76udm/nips2017su-poster.pdf?dl=0">poster</a>]
+                    [<a href="https://github.com/sammy-su/Spherical-Convolution">code</a>]
+                    [<a href="https://www.dropbox.com/s/kpcgtg6qbetrybc/sphconv.tar.gz?dl=1">model</a>]
+                    </li>
+                </ul>
+                [<a href="#">top</a>]
+            </div>
+        </div> <!-- /container -->
+
+        <footer>
+        </footer>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="http://sammy-su.github.io/js/bootstrap.min.js"></script>
+        <!--script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)
+         },i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-37193013-6', 'auto');
+        ga('send', 'pageview');
+        </script--!>
+    </body>
+</html>
